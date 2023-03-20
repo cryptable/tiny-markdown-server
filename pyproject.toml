@@ -10,7 +10,7 @@ repository = "https://github.com/cryptable/tiny-markdown-server"
 keywords = ["test", "markdown", "http", "server"]
 
 [tool.poetry.scripts]
-tiny-markdown-server = "tiny_markdown_server.tiny_markdown_server:main"
+tiny_markdown_server = "tiny_markdown_server.tiny_markdown_server:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"

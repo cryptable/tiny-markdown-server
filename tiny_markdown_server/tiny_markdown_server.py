@@ -10,14 +10,14 @@ serverPort = 8080
 
 reload_urls = {}
 
-startHTML="""
+startHTML = """
 <html>
   <head>
     <style type='text/css'>
 <!--
 """
 
-cssData="""
+cssData = """
 img {
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -26,17 +26,16 @@ img {
 }
 """
 
-cssEnd="""
+cssEnd = """
 -->
     </style>
   </head>
   <body>
 """
 
-endHTML="""
+endHTML = """
   </body>
 </html>"""
-
 
 jsonResponseTrue = '{ "refresh": true }'
 jsonResponseFalse = '{ "refresh": false }'
@@ -60,6 +59,7 @@ def create_reloader(time_and_path):
     }
 </script>
 """
+
 
 class MDServer(SimpleHTTPRequestHandler):
 
@@ -93,6 +93,7 @@ class MDServer(SimpleHTTPRequestHandler):
         else:
             SimpleHTTPRequestHandler.do_GET(self)
 
+
 def main(args=None):
     webServer = HTTPServer((hostName, serverPort), MDServer)
     print("Markdown Server started http://%s:%s" % (hostName, serverPort))
@@ -103,8 +104,8 @@ def main(args=None):
         pass
 
     webServer.server_close()
-    print("Server stopped.")  
+    print("Server stopped.")
 
 
-if __name__ == "__main__":        
+if __name__ == "__main__":
     main()

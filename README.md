@@ -11,12 +11,11 @@ Run the server
 
 You need to create markdown files in the folder of tiny-markdown-server.
 
-´´´
+```python
 cd tiny-markdown-server
 poetry install
 poetry run tiny_markdown_server
-´´´
-
+```
 Or once you activate the virtual environment, you can run tiny_markdown_server.cmd everywhere.
 
 TODO

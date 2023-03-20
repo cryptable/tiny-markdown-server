@@ -1,12 +1,9 @@
+import ssl
 from http.server import SimpleHTTPRequestHandler, HTTPServer
-import time
-import urllib
 import os
 import markdown
 import secrets
-
-hostName = "localhost"
-serverPort = 8080
+import sys
 
 reload_urls = {}
 
@@ -39,7 +36,6 @@ endHTML = """
 
 jsonResponseTrue = '{ "refresh": true }'
 jsonResponseFalse = '{ "refresh": false }'
-
 
 def create_reloader(time_and_path):
     scan_url_path = "/" + secrets.token_urlsafe(16)
@@ -94,17 +90,44 @@ class MDServer(SimpleHTTPRequestHandler):
             SimpleHTTPRequestHandler.do_GET(self)
 
 
-def main(args=None):
-    webServer = HTTPServer((hostName, serverPort), MDServer)
-    print("Markdown Server started http://%s:%s" % (hostName, serverPort))
+web_server : HTTPServer = None
 
+
+def start_web_server(hostname: str, server_port: int, cert_chain: str = None, key: str = None) -> None:
+    global web_server
+    web_server = HTTPServer((hostname, server_port), MDServer)
+    if cert_chain is not None:
+        web_server.socket = ssl.wrap_socket(web_server.socket, certfile=cert_chain, keyfile=key)
     try:
-        webServer.serve_forever()
+        print("Markdown Server started http://%s:%s" % (hostname, server_port))
+        web_server.serve_forever()
     except KeyboardInterrupt:
         pass
 
-    webServer.server_close()
+    web_server.server_close()
     print("Server stopped.")
+
+
+def is_web_server_running() -> bool:
+    return web_server is not None
+
+
+def stop_web_server() -> None:
+    global web_server
+    if web_server is not None:
+        print("Trying to shutdown Server.")
+        web_server.shutdown()
+        print("Server shutdown.")
+
+def main(args=None):
+    hostname = "localhost"
+    port = 8080
+    if args is None:
+        args = sys.argv[1:]
+    if len(args) == 2:
+        hostname = args[0]
+        port = int(args[1])
+    start_web_server(hostname, port)
 
 
 if __name__ == "__main__":

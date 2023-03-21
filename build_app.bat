@@ -1,0 +1,1 @@
+pyinstaller --name tiny_md_server main.py

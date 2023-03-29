@@ -99,7 +99,10 @@ def start_web_server(hostname: str, server_port: int, cert_chain: str = None, ke
     if cert_chain is not None:
         web_server.socket = ssl.wrap_socket(web_server.socket, certfile=cert_chain, keyfile=key)
     try:
-        print("Markdown Server started http://%s:%s" % (hostname, server_port))
+        if cert_chain is not None:
+            print("Markdown Server started https://%s:%s" % (hostname, server_port))
+        else:
+            print("Markdown Server started http://%s:%s" % (hostname, server_port))
         web_server.serve_forever()
     except KeyboardInterrupt:
         pass

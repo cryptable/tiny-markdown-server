@@ -54,7 +54,7 @@ TODO
 Changelogs
 ----------
 
-0.3.1 - Fixed the main.py, update the README with more information
-0.3.0 - GUI added and TLS support
-0.2.0 - Markdown support with no gui
-0.1.0 - Initial
+- 0.3.1 - Fixed the main.py, update the README with more information
+- 0.3.0 - GUI added and TLS support
+- 0.2.0 - Markdown support with no gui
+- 0.1.0 - Initial

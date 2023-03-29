@@ -1,9 +1,8 @@
 import sys
-from tiny_markdown_server.tiny_markdown_server import start_web_server
 from tiny_markdown_server.tiny_markdown_gui import gui_web_server
 
 
-if __name__ == "__main__":
+def main():
     hostname = "localhost"
     port = 8080
 
@@ -12,3 +11,7 @@ if __name__ == "__main__":
         port = int(sys.argv[0])
 
     gui_web_server()
+
+
+if __name__ == "__main__":
+    main()

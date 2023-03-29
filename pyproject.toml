@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiny-markdown-server"
-version = "0.1.0"
+version = "0.3.0"
 description = "Python based Tiny Markdown Server, which transforms Markdown files to webpages and shows it in a browser with auto-reload."
 authors = ["David Tillemans <davidtillemans@cryptable.org>"]
 license = "MIT"
@@ -10,7 +10,7 @@ repository = "https://github.com/cryptable/tiny-markdown-server"
 keywords = ["test", "markdown", "http", "server"]
 
 [tool.poetry.scripts]
-tiny_markdown_server = "tiny_markdown_server.tiny_markdown_server:main"
+tiny_markdown_server = "main:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
